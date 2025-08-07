@@ -5,6 +5,7 @@ import { Input, Button, Card, Spin, message, Row, Col, Typography, Avatar, Tabs,
 import { SearchOutlined, AudioOutlined, CopyOutlined, ReloadOutlined } from '@ant-design/icons';
 import type { SongInfo } from '../lib/songExtractor'; // 引入类型
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 const { Title, Text, Paragraph } = Typography;
 const { TabPane } = Tabs;
@@ -60,46 +61,83 @@ export default function Home() {
   };
 
   return (
-    <main className="container mx-auto p-4 sm:p-8" style={{ maxWidth: 1200 }}>
-      <Card className="mb-6" style={{ borderRadius: 12, marginBottom: 16 }}>
-        <Row gutter={[16, 16]} align="middle" justify="space-between">
-          <Col xs={24} md={16}>
-            <Title level={2} style={{ marginBottom: 4 }}>抖音歌曲信息提取器</Title>
-            <Text type="secondary">输入抖音歌曲页面的ID，即可获取歌曲封面、音频和歌词。</Text>
-          </Col>
-          <Col xs={24} md={8}>
-            <SearchBar value={songId} onChange={setSongId} onSearch={handleSearch} loading={loading} />
-          </Col>
-        </Row>
-      </Card>
-
-      <StepsGuide current={step} />
-
-      {loading && (
-        <div className="text-center">
-          <Spin size="large" tip="正在努力提取中..." />
-        </div>
-      )}
-
-      {error && (
-        <Card className="mx-auto" style={{ borderColor: '#ffccc7', background: '#fff2f0' }}>
-          <div className="text-center" style={{ color: '#cf1322' }}>
-            <Title level={4} style={{ color: '#cf1322' }}>出错啦！</Title>
-            <Paragraph>{error}</Paragraph>
-          </div>
+    <div>
+      <main className="container mx-auto p-4 sm:p-8" style={{ maxWidth: 1200 }}>
+        <Card className="mb-6" style={{ borderRadius: 12, marginBottom: 16 }}>
+          <Row gutter={[16, 16]} align="middle" justify="space-between">
+            <Col xs={24} md={16}>
+              <Title level={2} style={{ marginBottom: 4 }}>抖音歌曲信息提取器</Title>
+              <Text type="secondary">输入抖音歌曲页面的ID，即可获取歌曲封面、音频和歌词。</Text>
+            </Col>
+            <Col xs={24} md={8}>
+              <SearchBar value={songId} onChange={setSongId} onSearch={handleSearch} loading={loading} />
+            </Col>
+          </Row>
         </Card>
-      )}
 
-      {songInfo && (
-        <SongCard
-          song={songInfo}
-          onReload={handleSearch}
-          onCopy={copyToClipboard}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-        />
-      )}
-    </main>
+        <StepsGuide current={step} />
 
+        {loading && (
+          <div className="text-center">
+            <Spin size="large" tip="正在努力提取中..." />
+          </div>
+        )}
+
+        {error && (
+          <Card className="mx-auto" style={{ borderColor: '#ffccc7', background: '#fff2f0' }}>
+            <div className="text-center" style={{ color: '#cf1322' }}>
+              <Title level={4} style={{ color: '#cf1322' }}>出错啦！</Title>
+              <Paragraph>{error}</Paragraph>
+            </div>
+          </Card>
+        )}
+
+        {songInfo && (
+          <SongCard
+            song={songInfo}
+            onReload={handleSearch}
+            onCopy={copyToClipboard}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
+        )}
+
+        <Typography
+          style={{
+            borderTop: '1px solid #f0f0f0',
+            paddingTop: '20px',
+            marginTop: '20px',
+          }}
+        >
+          <Text strong>
+            Powered by
+            {' '}
+            <Link href="https://github.com/Hny0305Lin" target="_blank">
+              Lin.Meng
+            </Link>
+            .
+            {' '}
+            <Text strong style={{ marginLeft: '4px' }}>
+              Click
+              {' '}
+              <Text keyboard>Star</Text>
+              {' '}
+              to support me.
+            </Text>
+            <Paragraph
+              strong
+              style={{
+                fontSize: '9px',
+                marginTop: 10,
+              }}
+            >
+              <Text mark>
+                仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。版权争议与本站无关，您必须在下载后的24个小时之内，从您的电脑中彻底删除上述内容。访问和下载本站内容，说明您已同意上述条款。本网站拒绝为违法违规内容服务，请自觉遵守中国大陆相关法律法规。
+              </Text>
+            </Paragraph>
+          </Text>
+        </Typography>
+      </main>
+    </div>
   );
 }

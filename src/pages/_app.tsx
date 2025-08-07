@@ -8,12 +8,12 @@ const App = ({ Component, pageProps }: AppProps) => (
   <ConfigProvider
     theme={{
       token: {
-        borderRadius: 10,
+        borderRadius: 12,
       },
       algorithm: antdTheme.darkAlgorithm,
     }}
   >
-      <Component {...pageProps} />
+    <Component {...pageProps} />
   </ConfigProvider>
 );
 
