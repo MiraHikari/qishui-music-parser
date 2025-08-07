@@ -1,5 +1,3 @@
-// songExtractor.ts
-
 // --- Step 1: Define Types (expanded to match the full RouterData schema) ---
 
 // Primitive and Utility Types
@@ -339,7 +337,7 @@ function extractContributors(lyricsData: Lyrics | undefined): {
 
   const nameSplit = (value: string) =>
     value
-      .split(/[\/、，,;；\s]+/)
+      .split(/[/、，,;；\s]+/)
       .map(s => s.trim())
       .filter(Boolean);
 
@@ -436,7 +434,7 @@ export function extractInlineDataFromHtml(
     return { parsedData: null, jsonText: null, debug: debug || undefined };
   }
 
-  let scriptContent = match[1].trim();
+  const scriptContent = match[1].trim();
   if (debug) {
     debug.scriptPreviewStart = scriptContent.substring(0, 200);
     debug.scriptPreviewEnd = scriptContent.substring(Math.max(0, scriptContent.length - 200));
@@ -546,14 +544,6 @@ export function constructSongInfoFromInlineData(
   };
 
   return enriched;
-}
-
-/**
- * Produce an ESM JavaScript module exporting the SongInfo.
- */
-export function toJsModule(song: SongInfo, variableName = 'song'): string {
-  const json = JSON.stringify(song, null, 2);
-  return `const ${variableName} = ${json};\nexport default ${variableName};\n`;
 }
 
  /**

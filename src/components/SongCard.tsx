@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Avatar, Typography, Space, Tag, Tooltip, Row, Col, Divider, Button, Tabs, List, Statistic, Descriptions, Badge } from 'antd';
-import { AudioOutlined, CopyOutlined, ReloadOutlined } from '@ant-design/icons';
+import { AudioOutlined, CopyOutlined, ReloadOutlined, LinkOutlined } from '@ant-design/icons';
 import type { SongInfo, BitRate, Comment } from '../lib/songExtractor';
 
 const { Title, Text } = Typography;
@@ -80,10 +80,20 @@ export default function SongCard({ song, onReload, onCopy, activeTab, onTabChang
         </Col>
         <Col xs={24} md={14}>
           <Title level={5} style={{ textAlign: 'center', marginBottom: 8 }}>歌曲音频</Title>
-          <audio controls src={`/api/proxy/audio?url=${encodeURIComponent(song.audioUrl)}`} style={{ width: '100%' }}>
-            <AudioOutlined />
-            您的浏览器不支持 audio 标签。
-          </audio>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <audio
+              controls
+              src={song.audioUrl}
+              style={{ width: '100%' }}
+              crossOrigin="anonymous"
+            >
+              <AudioOutlined />
+              您的浏览器不支持 audio 标签。
+            </audio>
+            <Tooltip title="在新标签页打开音频">
+              <Button icon={<LinkOutlined />} href={song.audioUrl} target="_blank" rel="noreferrer" />
+            </Tooltip>
+          </div>
           {song.stats ? (
             <div style={{ marginTop: 16 }}>
               <Space size={24} wrap>

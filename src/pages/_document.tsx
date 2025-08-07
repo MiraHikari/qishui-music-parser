@@ -6,6 +6,7 @@ import type { DocumentContext } from 'next/document';
 const MyDocument = () => (
   <Html lang="en">
     <Head />
+    <meta name="referrer" content="no-referrer" />
     <body>
       <Main />
       <NextScript />
