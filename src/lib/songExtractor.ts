@@ -165,7 +165,7 @@ export interface AudioWithLyricsOption {
   kid: string;
   url: string;
   songMakerTeamSentences: string[];
-  lyrics: Lyrics;
+  lyrics?: Lyrics;
   uuid: string;
   duration: number;
   encrypt: boolean;
@@ -293,9 +293,17 @@ function pushLog(debug: ExtractionDebugInfo | null, ...parts: any[]) {
   /**
    * 将 JSON 歌词数据转换为 LRC 和逐字歌词格式
    */
-  function formatLyrics(lyricsData: Lyrics): FormattedLyrics {
+  function formatLyrics(lyricsData: Lyrics | undefined): FormattedLyrics {
    const lrcLines: string[] = [];
    const wordLrcLines: string[] = [];
+
+   // 检查是否存在歌词数据
+   if (!lyricsData || !lyricsData.sentences || !Array.isArray(lyricsData.sentences)) {
+     return {
+       lrc: '',
+       wordLrc: ''
+     };
+   }
 
    // 过滤掉非歌词的元数据行 (如作曲、作词信息)
    const actualLyrics = lyricsData.sentences.filter(

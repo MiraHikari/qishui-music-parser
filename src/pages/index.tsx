@@ -71,6 +71,7 @@ export default function Home() {
     <div>
       <Head>
         <title>抖音歌曲信息提取器</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className="container mx-auto p-4 sm:p-8 max-w-[1280px]">
         <Card className="mb-6" style={{ borderRadius: 12, marginBottom: 16 }}>

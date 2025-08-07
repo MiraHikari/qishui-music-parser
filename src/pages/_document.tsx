@@ -7,7 +7,7 @@ const MyDocument = () => (
   <Html lang="zh-CN">
     <Head>
       <meta charSet="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      
       <meta name="referrer" content="no-referrer" />
 
       {/* 基本SEO信息 */}

@@ -128,22 +128,38 @@ export default function SongCard({ song, onReload, onCopy, activeTab, onTabChang
                 ) : null}
               </Space>
             ) : null}
-            <pre style={{ whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.6, maxHeight: 320, overflowY: 'auto' }}>
-              {song.lyrics.lrc}
-            </pre>
-            <Button icon={<CopyOutlined />} onClick={() => onCopy?.(song.lyrics.lrc, 'LRC歌词')} style={{ marginTop: 8 }}>
-              复制LRC
-            </Button>
+            {song.lyrics?.lrc ? (
+              <>
+                <pre style={{ whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.6, maxHeight: 320, overflowY: 'auto' }}>
+                  {song.lyrics.lrc}
+                </pre>
+                <Button icon={<CopyOutlined />} onClick={() => onCopy?.(song.lyrics.lrc, 'LRC歌词')} style={{ marginTop: 8 }}>
+                  复制LRC
+                </Button>
+              </>
+            ) : (
+              <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
+                <Text type="secondary">此歌曲暂无歌词信息</Text>
+              </div>
+            )}
           </Card>
         </TabPane>
         <TabPane tab="逐字歌词" key="2">
           <Card>
-            <pre style={{ whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.6, maxHeight: 320, overflowY: 'auto' }}>
-              {song.lyrics.wordLrc}
-            </pre>
-            <Button icon={<CopyOutlined />} onClick={() => onCopy?.(song.lyrics.wordLrc, '逐字歌词')} style={{ marginTop: 8 }}>
-              复制逐字歌词
-            </Button>
+            {song.lyrics?.wordLrc ? (
+              <>
+                <pre style={{ whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.6, maxHeight: 320, overflowY: 'auto' }}>
+                  {song.lyrics.wordLrc}
+                </pre>
+                <Button icon={<CopyOutlined />} onClick={() => onCopy?.(song.lyrics.wordLrc, '逐字歌词')} style={{ marginTop: 8 }}>
+                  复制逐字歌词
+                </Button>
+              </>
+            ) : (
+              <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
+                <Text type="secondary">此歌曲暂无逐字歌词信息</Text>
+              </div>
+            )}
           </Card>
         </TabPane>
         <TabPane tab="歌曲信息" key="3">
