@@ -54,8 +54,7 @@
     "artists": ["艺术家"],
     "coverUrl": "封面图片URL",
     "audioUrl": "音频文件URL",
-    "lrcLyrics": "LRC格式歌词",
-    "enhancedLrcLyrics": "逐字歌词",
+    "lyrics": ....,
     // ... 其他歌曲信息
   },
   "error": null,
