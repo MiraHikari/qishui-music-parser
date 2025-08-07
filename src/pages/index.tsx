@@ -3,6 +3,7 @@ import { Card, Spin, message, Row, Col, Typography } from 'antd';
 import type { SongInfo } from '../lib/songExtractor';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -68,6 +69,9 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <title>抖音歌曲信息提取器</title>
+      </Head>
       <main className="container mx-auto p-4 sm:p-8 max-w-[1280px]">
         <Card className="mb-6" style={{ borderRadius: 12, marginBottom: 16 }}>
           <Row gutter={[16, 16]} align="middle" justify="space-between">
@@ -124,8 +128,8 @@ export default function Home() {
           <Text strong>
             Powered by
             {' '}
-            <Link href="https://github.com/Hny0305Lin" target="_blank">
-              Lin.Meng
+            <Link href="https://github.com/MiraHikari/qishui-music-parser" target="_blank">
+              MiraHikari
             </Link>
             .
             {' '}
