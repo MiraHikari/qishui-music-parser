@@ -26,7 +26,7 @@ export default function SongCard({ song, onReload, onCopy, activeTab, onTabChang
     <Card
       style={{ borderRadius: 12, margin: '0 auto' }}
       title={
-        <div style={{ display: 'flex', alignItems: 'center', margin:'1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', marginTop: '0.8rem', marginBottom: '0.8rem' }}>
           <Avatar src={resolveUrl(song.coverUrl)} shape="square" size={64} style={{ marginRight: 16 }} />
           <div>
             <Space direction="vertical" size={0}>
